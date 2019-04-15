@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
     public float groundCheckRadius;
     public LayerMask WhatIsGround;
     public float jumpHeight;
+    float jumpHeightStore;
     public float moveSpeed;
     public bool grounded;
     float jumpTimeCounter;
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour {
         rightBorder = 9;
         playerWidth = GetComponent<SpriteRenderer>().size.x * transform.localScale.x;
         playerHeight = GetComponent<SpriteRenderer>().size.y * transform.localScale.y;
-
+        jumpHeightStore = jumpHeight;
         SetDirections();
     }
     void SetDirections()
@@ -67,6 +68,7 @@ public class PlayerController : MonoBehaviour {
         {
             longJump = true;
             jumpTimeCounter = jumpTime;
+            jumpHeight = jumpHeightStore;
             rb.velocity = new Vector2(0, jumpHeight);
             jumpCounter++;
         }
@@ -81,6 +83,10 @@ public class PlayerController : MonoBehaviour {
             {
                 longJump = false;
             }
+        }
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            longJump = false;
         }
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {

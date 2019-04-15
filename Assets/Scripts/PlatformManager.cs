@@ -62,7 +62,6 @@ public class PlatformManager : MonoBehaviour {
                 float x = GetRandomNumber(-xBorder, xBorder);
                 int countY = (int)GetRandomNumber(1, (maxVerticalCount + 1));
                 float y = countY * (height + playerHeight) - yBorder - playerHeight;
-                Debug.Log(y + ", " + (yBorder * 2) / y);
                 MakeNewPlatform(new Vector2(x, y));
             }
             SetPositionForCharacter();
